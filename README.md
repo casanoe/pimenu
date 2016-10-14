@@ -30,19 +30,20 @@ The app can be started in fullscreen by passing ```fs``` as first parameter.
 What's new ?
 ------------
 
-In the configuration file ```pimenu.yaml``` a few new parameters:
+In the configuration file ```pimenu.yaml``` a few new parameters (all optional):
 
 - ```font```: button text font
 - ```title```: first button text line (not editable in the user script)
 - ```icon```: gif or ppm image from an url (http, https) or from ```image``` directory
 - ```image```: png or jpg image from an url (http, https) or from ```image```directory
 - ```imgheight```, ```imgwidth```: size of the ```image```
-- ```user```: used when an event occured ("onconfigure", "onclick" or "onrefresh")
+- ```user``` (optional): used when an event occured ("onconfigure", "onclick" or "onrefresh")
   - ```func```: callable function in ```pimenu_user.py```. 
     - Syntax ```def slideshow_info(val, params, action):```
     - var ```val```: mixed variable
     - var ```params```: dict of params (see bellow)
     - var ```action```: "onconfigure", "onclick" or "onrefresh" depending on the action
+    - You have to return an array ```[mixed var, boolean, {dict of parameters to update like ```label```, ```icon```} ]```
   - ```refresh```: call the function every x milliseconds
   - ```params```: free parameters that will be passed to user function
   - ```label```, ```icon```, ```font```, ```image```, ```imgheight```, ```imgwidth```: the same 
