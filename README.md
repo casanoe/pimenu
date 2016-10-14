@@ -43,7 +43,7 @@ In the configuration file ```pimenu.yaml``` a few new parameters (all optional):
     - var ```val```: mixed variable
     - var ```params```: dict of params (see bellow)
     - var ```action```: "onconfigure", "onclick" or "onrefresh" depending on the action
-    - You have to return an array ```[mixed var, boolean, {dict of parameters to update like ```label```, ```icon```} ]```
+    - You have to return an array ```[update of val, state of the button True/False, {dict of parameters to update like label, icon...} ]```
   - ```refresh```: call the function every x milliseconds
   - ```params```: free parameters that will be passed to user function
   - ```label```, ```icon```, ```font```, ```image```, ```imgheight```, ```imgwidth```: the same 
