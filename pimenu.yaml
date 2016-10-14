@@ -1,103 +1,199 @@
 # Menu-Setup.
 #
-# name and label are required for each item
-# color and icon are optional
-# only gifs (48x48) are supported
-#
+# name is required for each item
+# color, title, label, user and icon are optional
 ---
+  -
+    name: "clock"
+    color: "#339933"
+    font: "helvetica 20"
+    user: 
+      -
+        refresh: "60000"
+        func: "clock"
+        params:
+          -
+            fmt: "%A\n%d %B\n\n%H:%M"
+  -
+    name: "domo"
+    color: "#3366ff"
+    icon: "thermometer_out.png"
+    title: "Exterieur"
+    user: 
+      -
+        func: "domodevices"
+        refresh: "60000"
+        params:
+          -
+            id: "33"
+            param: "Temp"
+            domo_url: "http://192.168.1.74:8084"
+  -
+    name: "couloir"
+    title: "Couloir"
+    label: "on"
+    color: "#3366ff"
+    icon: "bulb_on.png"
+    user: 
+      -
+        func: "domoswitch"
+        label: "off"
+        refresh: "60000"
+        icon: "bulb_off.png"
+        params:
+          -
+            id: "1"
+            domo_url: "http://192.168.1.74:8084"
   - 
-    name: "andi"
-    label: "Andi"
-    color: "#603cba"
-    icon: "fish"
+    name: "tools"
+    label: "Outils"
+    icon: "tools.png"
     items: 
       - 
-        name : "insurance"
-        label: "Insurance"
+        name : "meteo"
+        label: "Meteo"
         color: "#603cba"
-        icon : "shield"
+        imgwidth: "200"
+        imgheight: "200"
+        image: "http://www.meteofrance.com/integration/sim-portail/satellite_commentee/image.jpg"
       - 
-        name : "invoice"
-        label: "Invoices"
+        name : "photoframe"
+        label: "Photos"
         color: "#603cba"
-        icon : "invoice"
-      - 
-        name : "banking"
-        label: "Banking"
-        color: "#603cba"
-        icon : "currency.dollar"
-      -
-        name : "other"
-        label: "Other"
-        color: "#603cba"
-        icon : "cabinet.files.variant"
-  - 
-    name: "kaddi"
-    label: "Kaddi"
-    color: "#9f00a7"
-    icon: "bunny"
-    items:
-      -
-        name : "versicherung"
-        label: "Versicherung"
-        icon : "shield"
+        icon : "image.png"
         items:
           -
-            name : "leben"
-            label: "Leben"
-            icon : "grave"
+            name: "__localparam__"
+            direction: "horizontal"
+            label: "My back button !!!"
           -
-            name : "rente"
-            label: "Rente"
-            icon : "marvel.shield"
+            name: "__back__"
+            color: "#000000"
+            font: "helvetica 20"
+            user:
+              -
+                func: "clock"
+                refresh: "1000"
+                params:
+                  -
+                    fmt: "%H:%M:%S"
           -
-            name : "haftpflicht"
-            label: "Haftpflicht"
-            icon : "shield.alert"
+            name: "slideshow"
+            imgwidth: "750"
+            imgheight: "400"
+            color: "#000000"
+            user:
+              -
+                func: "slideshow"
+                refresh: "5000"
+      - 
+        name : "music"
+        color: "#603cba"
+        imgwidth: "200"
+        imgheight: "150"
+        user:
           -
-            name : "unfall"
-            label: "Unfall"
-            icon : "ambulance"
+            func: "slideshow"
+            refresh: "10000"
+      -
+        name : "radio"
+        label: "Radio"
+        color: "#603cba"
+        icon : "music.png"
+  - 
+    name: "meteo"
+    color: "#3366ff"
+    user:
+      -
+        func: "openweathermap"
+        refresh: "3600000"
+        params:
           -
-            name : "gesundheit"
-            label: "Kranken"
-            icon : "medical"
+            id: "2996653"
+            appid: "ef1fc6490ee54b3fa107bc3a321e0fb3"
+  -
+    name: "raspberrypi"
+    icon: "raspi.png"
+    label: "System"
+    items:
+      -
+        name: "raspberrypi"
+        icon: "raspi.png"
+        user: 
           -
-            name : "sozial"
-            label: "Sozial"
-            icon : "share.open"
+            func: "raspberrypi"
+            refresh: "30000"      
+      -
+        name: "brightness"
+        label: "On"
+        title: "Ecran"
+        icon: "lightbulb.hue.on.gif"
+        color: "#0099cc"
+        user: 
           -
-            name : "hausrat"
-            label: "Hausrat"
-            icon : "home"
-      -
-        name : "gehalt"
-        label: "Gehalt"
-        icon : "money"
-      -
-        name : "wisag"
-        label: "Wisag"
-        icon : "clothes.tie"
-      -
-        name : "bhw"
-        label: "BHW"
-      -
-        name : "rechnungen"
-        label: "Rechnungen"
-        icon : "invoice"
-      -
-        name : "wohnung"
-        label: "Wohnung"
-        icon : "home"
-      -
-        name : "steuer"
-        label: "Eink.st."
-        icon : "marvel.shield"
-      -
-        name : "bank"
-        label: "Bank"
-        icon : "currency.dollar"
-      -
-        name : "sonstiges"
-        label: "Sonstiges"
-        icon : "cabinet.files.variant"
+            func: "brightness_switch"
+            label: "Off"
+            color: "#000000"
+            icon: "lightbulb.hue.gif"
+      - 
+        name: "system"
+        label: "System"
+        color: "#ff0000"
+        icon: "cancel.gif"
+        items:
+          -
+            name : "quit"
+            label: "Exit"
+            icon : "door.leave.gif"
+            items:
+              -
+                name: "quit"
+                label: "Exit !"
+                font: "sans 25"
+                user :
+                  -
+                    func: "quit"
+          -
+            name : "reboot"
+            label: "Reboot"
+            icon : "reset.gif"
+            items:
+              -
+                name: "reboot"
+                label: "Reboot !"
+                font: "sans 25"
+          -
+            name : "shutdown"
+            label: "OFF"
+            icon : "power.gif"
+            items:
+              -
+                name: "shutdown"
+                label: "Shutdown !"
+                font: "sans 25"
+          -
+            name : "start"
+            label: "Restart"
+            icon : "transform.rotate.clockwise.gif"
+          -
+            name : "freemem"
+            label: "Optimize\nmemory"
+            icon : "hardware.cpu.gif"
+          -
+            name : "displayoff"
+            label: "Display off"
+            icon : "fullscreen.gif"
+            items:
+              -
+                name: "displayoff"
+                label: "Display Off !"
+                font: "sans 25"
+          -
+            name : "backup"
+            label: "Backup Pi"
+            icon : "database.gif"
+            items:
+              -
+                name: "backup"
+                label: "Backup !"
+                font: "sans 25"

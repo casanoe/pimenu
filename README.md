@@ -1,21 +1,40 @@
 PiMenu
 ======
 
-This is a simple fullscreen menu system written in Python TKInter. It has been
-developed with a Raspberry Pi Touchscreen in mind and is optimized for small
-screens (320x240 is assumed).
+This is a fork of pimenu from splitbrain (a simple fullscreen menu system written in Python TKInter). 
+
+It has been developed with a Raspberry Pi 3 with his Official Touchscreen (7'').
 
 The design is inspired by Windows 8's Metro design. Tiles are configured in
-```pimenu.yaml```, they can either open new pages of tiles or execute the action
-script ```pimenu.sh``` to execute arbitrary tasks.
+```pimenu.yaml```, they can either open new pages of tiles or execute actions 
+(in script ```pimenu.sh``` or form a function in ```pimenu_user.py```) to execute arbitrary tasks.
 
-On the Raspberry, install python-yaml:
+Prerequesite
+------------
 
-    sudo apt-get install python-yaml
+On the Raspberry, install:
+
+- python-yaml with apt-get
+- PIL module with pip (optional)
+- webbrowser with pip (optional)
+- psutil with pip (optional)
+
 
 The app can be started in fullscreen by passing ```fs``` as first parameter.
 
 ![Screenshot](screenshot.png)
+
+
+What's new ?
+------------
+
+In the configuration file ```pimenu.yaml``` a few new parameters:
+- ```font```: button text font for example "helvetica 20"
+- ```title```: first button text line (not editable in the user script)
+- ```user```: 
+  - ```func```: callable function in ```pimenu_user.py```. 
+  Syntax ```def slideshow_info(val, params, action):```
+
 
 License
 -------
