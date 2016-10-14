@@ -4,8 +4,10 @@
 # The names of the pages and of the clicked tile will be passed as arguments.
 # Use those to decide what to do.
 
-#key=$(echo "$*" | awk 'NF>1{print $NF}')
 key=${@: -1}
+
+PIMENUDIR = "/home/pi/Scripts/pimenu/"
+SCRIPTSMENUDIR = "/home/pi/Scripts/pimenu/"
 
 USBKEYS=($(
     grep -Hv ^0$ /sys/block/*/removable |
@@ -16,7 +18,9 @@ USBKEYS=($(
     cut -d / -f 4
 ))
 
-USBMOUNT=($(mount | grep /dev/$USBKEYS | awk '{print $3}' | grep RASPI-DATA))
+#USBMOUNT=($(mount | grep /dev/$USBKEYS | awk '{print $3}' | grep RASPI-DATA))
+# The first detected USB key
+USBMOUNT=($(mount | grep /dev/$USBKEYS | awk '{print $3}'))
 
 case $key in
     "freemem")
@@ -25,10 +29,10 @@ case $key in
     ;;
     "start")
     	killall pimenu.py
-    	/home/pi/Scripts/pimenu/pimenu.py fs
+    	$PIMENUDIR/pimenu.py fs
     ;;
     "photoframe")
-		/home/pi/Scripts/picture_frame.sh $USBMOUNT
+		$SCRIPTSMENUDIR/picture_frame.sh $USBMOUNT
     ;;
     "reboot")
     	sudo reboot
@@ -47,13 +51,13 @@ case $key in
                 $USB_MOUNT_POINT >> /home/pi/transfer.log
     ;;
     "backup")
-    	/home/pi/Scripts/backup.sh &
+    	$SCRIPTSMENUDIR/backup.sh &
     ;;
     "displayoff")
-    	/home/pi/Scripts/screen.sh off
+    	$SCRIPTSMENUDIR/screen.sh off
     ;;
     "displayon")
-    	/home/pi/Scripts/screen.sh on
+    	$SCRIPTSMENUDIR/screen.sh on
     ;;
     "")
         ps aux | grep -ie pimenu | awk '{print $2}' | xargs kill -9

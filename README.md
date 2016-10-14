@@ -22,7 +22,9 @@ On the Raspberry, install:
 
 The app can be started in fullscreen by passing ```fs``` as first parameter.
 
-![Screenshot](screenshot.png)
+![Screenshot](screenshot1.png)
+![Screenshot](screenshot2.png)
+![Screenshot](screenshot3.png)
 
 
 What's new ?

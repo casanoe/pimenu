@@ -8,7 +8,6 @@ import psutil
 import random
 
 BASE = "/sys/class/backlight/rpi_backlight/"
-#DOMO_URL = "http://192.168.1.74:8084"
 
 #######################
 
@@ -23,21 +22,24 @@ def slideshow_info(val, params, action):
 	return [True, True]
 
 def slideshow(val, params, action):
+	directory = "photos"
+	if 'directory' in params:
+		directory = params['directory']
 	if action == 'onconfigure':
-		dirlist = os.listdir('/media/pi/RASPI-DATA1/photos/')
+		dirlist = os.listdir(directory)
 		random.shuffle(dirlist)
 		val = [dirlist, 0]
 	if val[1] == len(val[0]):
 		random.shuffle(val[0])
 		val[1] = 0
-	f = '/media/pi/RASPI-DATA1/photos/'+val[0][val[1]]
+	f = directory + val[0][val[1]]
 	val[1] += 1
 	return [val, True, {'image': f}]
 
-def web(val, params, action):
-	if (action == "onclick"):
-		webbrowser.get('epiphany').open('http://192.168.1.74:8084',0, True)
-	return [val, True]
+#def web(val, params, action):
+#	if (action == "onclick"):
+#		webbrowser.get('epiphany').open('http://192.168.1.74:8084',0, True)
+#	return [val, True]
 
 def brightness_switch(val, params, action):
 	if action == 'onclick':

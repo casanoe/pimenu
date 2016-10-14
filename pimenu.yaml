@@ -86,6 +86,9 @@
               -
                 func: "slideshow"
                 refresh: "5000"
+                params:
+                  -
+                    directory: "/media/pi//media/pi/RASPI-DATA1/photos"
       - 
         name : "music"
         color: "#603cba"
@@ -95,6 +98,9 @@
           -
             func: "slideshow"
             refresh: "10000"
+            params:
+              -
+                directory: "/media/pi//media/pi/RASPI-DATA1/photos"
       -
         name : "radio"
         label: "Radio"
