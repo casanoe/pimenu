@@ -34,8 +34,8 @@ In the configuration file ```pimenu.yaml``` a few new parameters (all optional):
 
 - ```font```: button text font
 - ```title```: first button text line (not editable in the user script)
-- ```icon```: gif or ppm image from an url (http, https) or from ```image``` directory
-- ```image```: png or jpg image from an url (http, https) or from ```image```directory
+- ```icon```: gif or ppm image from an url (http, https) or from the ico directory
+- ```image```: png or jpg image from an url (http, https) or from the ico directory
 - ```imgheight```, ```imgwidth```: size of the ```image```
 - ```user``` (optional): used when an event occured ("onconfigure", "onclick" or "onrefresh")
   - ```func```: callable function in ```pimenu_user.py```. 
