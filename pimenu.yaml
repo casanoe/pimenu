@@ -69,14 +69,14 @@
           -
             name: "__back__"
             color: "#000000"
-            font: "helvetica 20"
+            font: "helvetica 15"
             user:
               -
                 func: "clock"
-                refresh: "1000"
+                refresh: "60000"
                 params:
                   -
-                    fmt: "%H:%M:%S"
+                    fmt: "%A %d %B - %H:%M"
           -
             name: "slideshow"
             imgwidth: "750"
@@ -88,7 +88,7 @@
                 refresh: "5000"
                 params:
                   -
-                    directory: "/media/pi//media/pi/RASPI-DATA1/photos"
+                    directory: "/media/pi/RASPI-DATA1/photos/"
       - 
         name : "music"
         color: "#603cba"
@@ -100,7 +100,7 @@
             refresh: "10000"
             params:
               -
-                directory: "/media/pi//media/pi/RASPI-DATA1/photos"
+                directory: "/media/pi/RASPI-DATA1/photos/"
       -
         name : "radio"
         label: "Radio"

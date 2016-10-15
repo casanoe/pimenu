@@ -3,8 +3,6 @@ import requests
 import datetime
 import webbrowser
 import psutil
-#from PIL import Image
-#from PIL import ImageTk
 import random
 
 BASE = "/sys/class/backlight/rpi_backlight/"

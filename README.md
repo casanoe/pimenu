@@ -15,9 +15,10 @@ Prerequesite
 On the Raspberry, install:
 
 - python-yaml with apt-get
-- PIL module with pip (optional)
+- pillow module with pip
 - webbrowser with pip (optional)
 - psutil with pip (optional)
+- requests with pip
 
 
 The app can be started in fullscreen by passing ```fs``` as first parameter.

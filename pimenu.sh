@@ -6,8 +6,8 @@
 
 key=${@: -1}
 
-PIMENUDIR = "/home/pi/Scripts/pimenu/"
-SCRIPTSMENUDIR = "/home/pi/Scripts/pimenu/"
+PIMENUDIR="/home/pi/Scripts/pimenu/"
+SCRIPTSDIR="/home/pi/Scripts/"
 
 USBKEYS=($(
     grep -Hv ^0$ /sys/block/*/removable |
@@ -18,9 +18,9 @@ USBKEYS=($(
     cut -d / -f 4
 ))
 
-#USBMOUNT=($(mount | grep /dev/$USBKEYS | awk '{print $3}' | grep RASPI-DATA))
+USBMOUNT=($(mount | grep /dev/$USBKEYS | awk '{print $3}' | grep RASPI-DATA))
 # The first detected USB key
-USBMOUNT=($(mount | grep /dev/$USBKEYS | awk '{print $3}'))
+#USBMOUNT=($(mount | grep /dev/$USBKEYS | awk '{print $3}'))
 
 case $key in
     "freemem")
@@ -32,7 +32,7 @@ case $key in
     	$PIMENUDIR/pimenu.py fs
     ;;
     "photoframe")
-		$SCRIPTSMENUDIR/picture_frame.sh $USBMOUNT
+		$SCRIPTSDIR/picture_frame.sh $USBMOUNT
     ;;
     "reboot")
     	sudo reboot
@@ -51,13 +51,13 @@ case $key in
                 $USB_MOUNT_POINT >> /home/pi/transfer.log
     ;;
     "backup")
-    	$SCRIPTSMENUDIR/backup.sh &
+    	$SCRIPTSDIR/backup.sh &
     ;;
     "displayoff")
-    	$SCRIPTSMENUDIR/screen.sh off
+    	$SCRIPTSDIR/screen.sh off
     ;;
     "displayon")
-    	$SCRIPTSMENUDIR/screen.sh on
+    	$SCRIPTSDIR/screen.sh on
     ;;
     "")
         ps aux | grep -ie pimenu | awk '{print $2}' | xargs kill -9

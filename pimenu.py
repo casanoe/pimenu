@@ -9,9 +9,10 @@ import subprocess
 import yaml
 
 import Tkconstants as TkC
-from Tkinter import Tk, Frame, Button, Label, PhotoImage
+
 from PIL import ImageTk as itk
 from PIL import Image
+from Tkinter import Tk, Frame, Button, Label, PhotoImage
 
 import sys
 import json
@@ -180,10 +181,10 @@ class PiMenu(Frame):
 
     def search_any(self, dict, key, value):
         for d in dict:
-	        if d[key] == value:
-	            return True
+            if d[key] == value:
+                return True
         return False
-	    
+
     def get_icon(self, ico):
         if ico in self.icons:
             return self.icons[ico]
@@ -199,7 +200,7 @@ class PiMenu(Frame):
             self.icons[ico] = PhotoImage(file=icopath)
             return self.icons[ico]
     
-    def get_image(self, name, file, size):
+    def get_image(self, name, file, size, _int = None):
         try:
             if file.lower().startswith('http://')==True or file.lower().startswith('https://')==True:
                 response = requests.get(file)
@@ -208,11 +209,30 @@ class PiMenu(Frame):
                 image1 = Image.open(file)
             image1.thumbnail(size)
             image = itk.PhotoImage(image1)
-            self.icons[name+'__image__'] = image
+            if _int == None:
+                _int = name+'__image__'
+            self.icons[_int] = image
             return image
         except:
             return None
-    
+
+    def get_icon2(self, ico):
+        if ico in self.icons:
+            return self.icons[ico]
+        if ico.lower().startswith('http://')==True or ico.lower().startswith('https://')==True:
+            return None
+            image_byt = urlopen(ico).read()
+            image_b64 = base64.encodestring(image_byt)
+            self.icons[ico] = itk.PhotoImage(data=image_b64)
+            return self.icons[ico]
+        else:
+            icopath = self.path + '/ico/' + ico
+            if not os.path.isfile(icopath):
+                icopath = self.path + '/ico/cancel.gif'
+            image1 = Image.open(icopath)
+            self.icons[ico] = itk.PhotoImage(image1)
+            return self.icons[ico]
+        
     def hide_top(self):
         """
         hide the top page
