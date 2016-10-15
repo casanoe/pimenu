@@ -1,4 +1,4 @@
-PiMenu
+MyPiMenu
 ======
 
 This is a fork of pimenu from splitbrain (a simple fullscreen menu system written in Python TKInter). 
